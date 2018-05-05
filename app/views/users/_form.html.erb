@@ -1,0 +1,67 @@
+
+<script type="text/javascript">
+    $('body').on('click', '#step_button', function()
+    {
+      $("#user_wizard").submit();
+    });
+</script>
+
+<div style="padding:20px">
+  <%= form_for(@user, url: {action: "wizard"}, remote: true, html: { method: :post , id: "user_wizard"})  do  |f| %>
+    <div id="error_explanation" style="display:none" >
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+    
+    <%#= hidden_field_tag 'step_num', @step_num  %>
+    <%#= hidden_field_tag 'user_id'  %>
+
+    <div class="new_user_flow_display" style="<%= 'display:none' if (@step_num == 1) %> ">
+      <div class="field">
+        <%= f.label :username %>: <span id="user_username_display"><%= @user.username %></span>   
+      </div>
+      <div class="field new_user_flow_3" style="<%= 'display:none' if (@step_num != 3) %> ">
+        <%= f.label :first_name %>: <span id="user_first_name_display"><%= @user.first_name %></span>
+      </div>
+      <div class="field new_user_flow_3" style="<%= 'display:none' if (@step_num != 3) %> ">
+        <%= f.label :last_name %>: <span id="user_last_name_display"><%= @user.last_name %></span>
+      </div> 
+    </div>
+
+    <div class="new_user_flow_1" style="<%= 'display:none' if (@step_num != 1) %> ">
+      <div class="field">
+        <%= f.label :username %><br>
+        <%= f.text_field :username %>
+      </div>
+      <div class="field">
+        <%= f.label :password %><br>
+        <%= f.password_field :password %>
+      </div>
+    </div>
+
+    <div class="new_user_flow_2" style="<%= 'display:none' if (@step_num != 2) %> ">
+      <div class="field">
+        <%= f.label :first_name %><br>
+        <%= f.text_field :first_name %>
+      </div>
+      <div class="field">
+        <%= f.label :last_name %><br>
+        <%= f.text_field :last_name %>
+      </div>
+      
+    </div>
+
+    <div class="new_user_flow_3"  style="<%= 'display:none' if (@step_num != 3) %> ">
+      Congrats! Your account is complete.
+    </div>
+    
+    <div class="actions" style="<%= 'display:none' if (@step_num == 3) %> ">
+      <input id="step_button" type="button" value="next step" class="step_button" >
+    </div>
+    
+  <% end %>
+</div>

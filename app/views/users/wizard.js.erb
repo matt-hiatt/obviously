@@ -1,0 +1,39 @@
+      
+      <% if @user.errors.any? %>
+        //alert("error!");
+        $("#error_explanation").html("");
+        $("#error_explanation").show();
+        $("#error_explanation").append("<h2><%= pluralize(@user.errors.count, 'error') %> prohibited this user from being saved:</h2>");
+        $("#error_explanation").append("<ul>");
+        <% @user.errors.full_messages.each do |message| %>
+          $("#error_explanation").append("<li><%= message %></li>");
+        <% end %>
+        $("#error_explanation").append("</ul>");
+        $("#error_explanation").append("</div> ");
+      <% else %>
+        
+        //alert(<%= @step_num %>);
+        $("#error_explanation").hide();
+        $("#step_num").val(<%= @step_num %>);
+        $("#user_id").val(<%= @user.id %>);
+        $("#page_title").html("Update user");
+
+        
+        <% [1,2,3].each do |i| %>
+          $(".new_user_flow_<%= i.to_s %>").<%= (i == @step_num.to_i) ? "show" : "hide" %>();
+        <% end %>
+
+        <% if(@step_num.to_i > 1) %>
+          $(".new_user_flow_display").show();
+          <% if(@step_num.to_i == 2) %>
+            $("#user_username_display").html("<%= @user.username %>");
+          <% elsif(@step_num.to_i == 3) %>
+            $("#user_first_name_display").html("<%= @user.first_name %>");
+            $("#user_last_name_display").html("<%= @user.last_name %>");
+            $(".actions").hide();
+          <% end %>
+        <% end %>
+
+        
+
+      <% end %>

@@ -1,0 +1,4 @@
+<%= link_to ((session[:user_id]) ? 'Continue your user' : 'New user'), new_user_path %> 
+<% if(session[:user_id]) %>
+ | <%= link_to 'Start a new user', wipe_session_path, method: :post, remote: true %>
+<% end %>
