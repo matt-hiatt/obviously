@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 	end
 
 	def User.return_step_num(user)
-		if(user.username.nil?)
+		if(user.username.blank?)
 			return 1
 		elsif(user.first_name.blank?)
 			return 2
