@@ -1,6 +1,20 @@
 
-<h1 id="page_title"><%= (!session[:user_id].nil?) ? "Continue" : "New" %> User</h1>
 
-<%= render 'form' %>
+<div style="height:50px;width:100%;background-color:#f7f7f7;padding:20px">
+  <h3>Obviously</h3>
+</div>
 
-<%= link_to 'Back', users_path %>
+<div style="width:100%;padding:20px">
+
+	<h1 id="page_title"><%= (!session[:user_id].nil?) ? "Continue" : "New" %> User</h1>
+
+	<%= render 'form' %>
+
+	<%= link_to 'Back', users_path %>
+
+</div>
+
+
+<div style="height:50px;width:100%;background-color:#f7f7f7;padding:20px;margin-top:20px;bottom:0;position:absolute;">
+  <h3>Obviously</h3>
+</div>
