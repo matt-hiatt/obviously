@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       @user = User.new
     else
       @user = User.find(session[:user_id])
-      @step_num = User.return_step_num(@user)
+      @step_num = @user.return_step_num
     end
 
     
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
       @user = User.new(user_params)
     else
       @user = User.find(session[:user_id])
-      @step_num = User.return_step_num(@user)
+      @step_num = @user.return_step_num
       @user.attributes = user_params
     end
 

@@ -19,10 +19,10 @@ class User < ActiveRecord::Base
 
 	end
 
-	def User.return_step_num(user)
-		if(user.username.blank?)
+	def return_step_num
+		if(self.username.blank?)
 			return 1
-		elsif(user.first_name.blank?)
+		elsif(self.first_name.blank?)
 			return 2
 		else
 			return 3
